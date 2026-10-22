@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: make build
+
+      - name: Run examples
+        run: make test
+
+      - name: Memory check (AddressSanitizer + UBSan)
+        run: |
+          gcc -g -fsanitize=address,undefined -Iinclude -o satellite_asan src/main.c src/operations.c
+          for d in examples/*/; do
+            n=$(basename "$d" | cut -c2)
+            ./satellite_asan -c$n "$d/input.txt" /tmp/output.txt > /dev/null
+          done

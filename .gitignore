@@ -1,0 +1,4 @@
+satellite
+satellite_asan
+*.o
+output.txt
