@@ -1,5 +1,7 @@
 # Satellite Network
 
+  [![CI](https://github.com/andreipopa05/satellite-network/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/andreipopa05/satellite-network/actions/workflows/ci.yml)
+
 A command-line tool written in C that builds a network of satellites as a binary tree, using a **Min-Heap** to decide how satellites are linked. The more often a satellite reports, the closer to the root it ends up.
 
 Besides building the network, it can decode and encode binary routing messages, find the closest common parent of a set of faulty satellites, and extend the network with multi-way trees to compute distances between any two satellites.
